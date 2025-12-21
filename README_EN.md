@@ -64,4 +64,4 @@ python skills/mysql-tools/scripts/mysql_connect.py --host 127.0.0.1 --user root 
 
 ## License
 
-Apache-2.0
+[MIT License](LICENSE) - Free to use, modify, and distribute.

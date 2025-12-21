@@ -64,4 +64,4 @@ python skills/mysql-tools/scripts/mysql_connect.py --host 127.0.0.1 --user root 
 
 ## 许可证
 
-Apache-2.0
+[MIT License](LICENSE) - 您可以自由使用、修改和分发本项目。
