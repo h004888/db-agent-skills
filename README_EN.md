@@ -1,5 +1,10 @@
 # My Agent Skills
 
+[![GitHub stars](https://img.shields.io/github/stars/huangzt/my-agent-skills.svg)](https://github.com/huangzt/my-agent-skills/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/huangzt/my-agent-skills.svg)](https://github.com/huangzt/my-agent-skills/network)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://www.python.org/)
+
 [中文](README.md)
 
 A collection of database utility skills for AI agents, compatible with [OpenSkills](https://github.com/numman-ali/openskills) system.
