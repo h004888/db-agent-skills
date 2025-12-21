@@ -79,7 +79,11 @@ python scripts/sqlite_info.py --database /path/to/database.db
 
 ## SQLite 特有注意事项
 
-- 支持只读模式（`--readonly`）
+- 支持只读模式，避免意外修改数据库：
+  ```bash
+  python scripts/sqlite_connect.py --database /path/to/database.db --readonly
+  python scripts/sqlite_query.py --database /path/to/database.db --readonly --query "SELECT * FROM users"
+  ```
 - 文件路径使用绝对路径更可靠
 - 某些文件可能被其他进程锁定（如 VS Code 正在使用的数据库）
 

@@ -55,7 +55,7 @@ openskills sync
 git clone https://github.com/huangzt/my-agent-skills.git
 
 # 安装依赖（以 MySQL 为例）
-pip install mysql-connector-python
+pip install pymysql
 
 # 使用脚本
 python skills/mysql-tools/scripts/mysql_connect.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB
