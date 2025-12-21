@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MySQL 数据库表列表查询工具"""
+"""MySQL 数据库表列表查询工具 (使用 PyMySQL)"""
 
 import argparse
 import json
@@ -7,13 +7,13 @@ import sys
 from decimal import Decimal
 
 try:
-    import mysql.connector
-    from mysql.connector import Error
+    import pymysql
+    import pymysql.cursors
 except ImportError:
     print(json.dumps({
         "success": False,
-        "error": "mysql-connector-python 未安装",
-        "message": "请运行: pip install mysql-connector-python"
+        "error": "pymysql 未安装",
+        "message": "请运行: pip install pymysql"
     }, ensure_ascii=False))
     sys.exit(1)
 
@@ -29,47 +29,47 @@ class CustomJSONEncoder(json.JSONEncoder):
 def list_tables(host: str, port: int, user: str, password: str, database: str) -> dict:
     """列出数据库中的所有表"""
     try:
-        connection = mysql.connector.connect(
+        connection = pymysql.connect(
             host=host,
             port=port,
             user=user,
             password=password,
             database=database,
-            connection_timeout=10
+            connect_timeout=10,
+            cursorclass=pymysql.cursors.DictCursor
         )
         
-        if connection.is_connected():
-            cursor = connection.cursor(dictionary=True)
-            
-            # 查询所有表和视图
-            query = """
-                SELECT 
-                    TABLE_NAME as table_name,
-                    TABLE_TYPE as table_type,
-                    ENGINE as engine,
-                    TABLE_ROWS as row_count,
-                    ROUND(DATA_LENGTH / 1024 / 1024, 2) as data_size_mb,
-                    TABLE_COMMENT as comment
-                FROM information_schema.TABLES 
-                WHERE TABLE_SCHEMA = %s
-                ORDER BY TABLE_NAME
-            """
-            cursor.execute(query, (database,))
-            tables = cursor.fetchall()
-            
-            cursor.close()
-            connection.close()
-            
-            return {
-                "success": True,
-                "data": {
-                    "database": database,
-                    "table_count": len(tables),
-                    "tables": tables
-                },
-                "message": f"找到 {len(tables)} 个表"
-            }
-    except Error as e:
+        cursor = connection.cursor()
+        
+        # 查询所有表和视图
+        query = """
+            SELECT 
+                TABLE_NAME as table_name,
+                TABLE_TYPE as table_type,
+                ENGINE as engine,
+                TABLE_ROWS as row_count,
+                ROUND(DATA_LENGTH / 1024 / 1024, 2) as data_size_mb,
+                TABLE_COMMENT as comment
+            FROM information_schema.TABLES 
+            WHERE TABLE_SCHEMA = %s
+            ORDER BY TABLE_NAME
+        """
+        cursor.execute(query, (database,))
+        tables = cursor.fetchall()
+        
+        cursor.close()
+        connection.close()
+        
+        return {
+            "success": True,
+            "data": {
+                "database": database,
+                "table_count": len(tables),
+                "tables": tables
+            },
+            "message": f"找到 {len(tables)} 个表"
+        }
+    except pymysql.Error as e:
         return {
             "success": False,
             "error": str(e),

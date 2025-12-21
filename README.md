@@ -13,7 +13,7 @@
 
 | 技能 | 数据库 | 依赖 |
 |------|--------|------|
-| [mysql-tools](skills/mysql-tools) | MySQL | `pip install mysql-connector-python` |
+| [mysql-tools](skills/mysql-tools) | MySQL | `pip install pymysql` |
 | [mssql-tools](skills/mssql-tools) | SQL Server | `pip install pymssql` |
 | [dm8-tools](skills/dm8-tools) | 达梦 DM8 | `pip install jaydebeapi JPype1` |
 | [sqlite-tools](skills/sqlite-tools) | SQLite | 无需安装（Python 内置） |

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MySQL SQL 查询执行工具"""
+"""MySQL SQL 查询执行工具 (使用 PyMySQL)"""
 
 import argparse
 import json
@@ -8,13 +8,13 @@ from decimal import Decimal
 from datetime import datetime, date, timedelta
 
 try:
-    import mysql.connector
-    from mysql.connector import Error
+    import pymysql
+    import pymysql.cursors
 except ImportError:
     print(json.dumps({
         "success": False,
-        "error": "mysql-connector-python 未安装",
-        "message": "请运行: pip install mysql-connector-python"
+        "error": "pymysql 未安装",
+        "message": "请运行: pip install pymysql"
     }, ensure_ascii=False))
     sys.exit(1)
 
@@ -36,52 +36,58 @@ class CustomJSONEncoder(json.JSONEncoder):
 def execute_query(host: str, port: int, user: str, password: str, database: str, query: str) -> dict:
     """执行 SQL 查询"""
     try:
-        connection = mysql.connector.connect(
+        connection = pymysql.connect(
             host=host,
             port=port,
             user=user,
             password=password,
             database=database,
-            connection_timeout=10
+            connect_timeout=10,
+            cursorclass=pymysql.cursors.DictCursor
         )
         
-        if connection.is_connected():
-            cursor = connection.cursor(dictionary=True)
-            
-            # 判断是否为 SELECT 查询
-            query_upper = query.strip().upper()
-            is_select = query_upper.startswith("SELECT") or query_upper.startswith("SHOW") or query_upper.startswith("DESCRIBE") or query_upper.startswith("EXPLAIN")
-            
-            cursor.execute(query)
-            
-            if is_select:
-                rows = cursor.fetchall()
-                result = {
-                    "success": True,
-                    "data": {
-                        "rows": rows,
-                        "row_count": len(rows),
-                        "columns": cursor.column_names
-                    },
-                    "message": f"查询成功，返回 {len(rows)} 行"
-                }
-            else:
-                connection.commit()
-                affected_rows = cursor.rowcount
-                result = {
-                    "success": True,
-                    "data": {
-                        "affected_rows": affected_rows,
-                        "last_insert_id": cursor.lastrowid
-                    },
-                    "message": f"执行成功，影响 {affected_rows} 行"
-                }
-            
-            cursor.close()
-            connection.close()
-            
-            return result
-    except Error as e:
+        cursor = connection.cursor()
+        
+        # 判断是否为 SELECT 查询
+        query_upper = query.strip().upper()
+        is_select = (
+            query_upper.startswith("SELECT") or 
+            query_upper.startswith("SHOW") or 
+            query_upper.startswith("DESCRIBE") or 
+            query_upper.startswith("EXPLAIN")
+        )
+        
+        cursor.execute(query)
+        
+        if is_select:
+            rows = cursor.fetchall()
+            columns = [desc[0] for desc in cursor.description] if cursor.description else []
+            result = {
+                "success": True,
+                "data": {
+                    "rows": rows,
+                    "row_count": len(rows),
+                    "columns": columns
+                },
+                "message": f"查询成功，返回 {len(rows)} 行"
+            }
+        else:
+            connection.commit()
+            affected_rows = cursor.rowcount
+            result = {
+                "success": True,
+                "data": {
+                    "affected_rows": affected_rows,
+                    "last_insert_id": cursor.lastrowid
+                },
+                "message": f"执行成功，影响 {affected_rows} 行"
+            }
+        
+        cursor.close()
+        connection.close()
+        
+        return result
+    except pymysql.Error as e:
         return {
             "success": False,
             "error": str(e),

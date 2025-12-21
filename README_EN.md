@@ -13,7 +13,7 @@ A collection of database utility skills for AI agents, compatible with [OpenSkil
 
 | Skill | Database | Dependency |
 |-------|----------|------------|
-| [mysql-tools](skills/mysql-tools) | MySQL | `pip install mysql-connector-python` |
+| [mysql-tools](skills/mysql-tools) | MySQL | `pip install pymysql` |
 | [mssql-tools](skills/mssql-tools) | SQL Server | `pip install pymssql` |
 | [dm8-tools](skills/dm8-tools) | Dameng DM8 | `pip install jaydebeapi JPype1` |
 | [sqlite-tools](skills/sqlite-tools) | SQLite | Built-in (no install needed) |

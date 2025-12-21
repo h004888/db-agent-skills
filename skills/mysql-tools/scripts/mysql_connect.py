@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
-"""MySQL 数据库连接测试工具"""
+"""MySQL 数据库连接测试工具 (使用 PyMySQL)"""
 
 import argparse
 import json
 import sys
 
 try:
-    import mysql.connector
-    from mysql.connector import Error
+    import pymysql
 except ImportError:
     print(json.dumps({
         "success": False,
-        "error": "mysql-connector-python 未安装",
-        "message": "请运行: pip install mysql-connector-python"
+        "error": "pymysql 未安装",
+        "message": "请运行: pip install pymysql"
     }, ensure_ascii=False))
     sys.exit(1)
 
@@ -20,35 +19,40 @@ except ImportError:
 def test_connection(host: str, port: int, user: str, password: str, database: str) -> dict:
     """测试 MySQL 数据库连接"""
     try:
-        connection = mysql.connector.connect(
+        connection = pymysql.connect(
             host=host,
             port=port,
             user=user,
             password=password,
             database=database,
-            connection_timeout=10
+            connect_timeout=10
         )
         
-        if connection.is_connected():
-            db_info = connection.server_info
-            cursor = connection.cursor()
-            cursor.execute("SELECT DATABASE();")
-            current_db = cursor.fetchone()[0]
-            cursor.close()
-            connection.close()
-            
-            return {
-                "success": True,
-                "data": {
-                    "server_version": db_info,
-                    "current_database": current_db,
-                    "host": host,
-                    "port": port,
-                    "user": user
-                },
-                "message": "数据库连接成功"
-            }
-    except Error as e:
+        cursor = connection.cursor()
+        
+        # 获取服务器版本
+        cursor.execute("SELECT VERSION()")
+        server_version = cursor.fetchone()[0]
+        
+        # 获取当前数据库
+        cursor.execute("SELECT DATABASE()")
+        current_db = cursor.fetchone()[0]
+        
+        cursor.close()
+        connection.close()
+        
+        return {
+            "success": True,
+            "data": {
+                "server_version": server_version,
+                "current_database": current_db,
+                "host": host,
+                "port": port,
+                "user": user
+            },
+            "message": "数据库连接成功"
+        }
+    except pymysql.Error as e:
         return {
             "success": False,
             "error": str(e),

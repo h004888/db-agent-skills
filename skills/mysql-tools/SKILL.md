@@ -12,7 +12,7 @@ description: "MySQL 数据库工具集，用于连接数据库实例、列出所
 ### 前置要求
 
 ```bash
-pip install mysql-connector-python
+pip install pymysql
 ```
 
 ### 平台兼容性
