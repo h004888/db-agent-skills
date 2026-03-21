@@ -27,20 +27,7 @@ skill-name/
 
 ## Cách sử dụng
 
-### Cách 1: Dùng với OpenSkills
-
-```bash
-# Cài đặt OpenSkills
-npm i -g openskills
-
-# Cài đặt skills
-openskills install huangzt/my-agent-skills
-
-# Đồng bộ vào AGENTS.md
-openskills sync
-```
-
-### Cách 2: Dùng trực tiếp script
+### Cách 1: Dùng trực tiếp script
 
 ```bash
 # Clone repo

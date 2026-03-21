@@ -1,13 +1,6 @@
 # My Agent Skills
 
-[![GitHub stars](https://img.shields.io/github/stars/huangzt/my-agent-skills.svg)](https://github.com/huangzt/my-agent-skills/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/huangzt/my-agent-skills.svg)](https://github.com/huangzt/my-agent-skills/network)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://www.python.org/)
-
 [Vietnamese](README.md)
-
-A collection of database utility skills for AI agents, compatible with the [OpenSkills](https://github.com/numman-ali/openskills) system.
 
 ## Included Skills
 
@@ -36,20 +29,7 @@ skill-name/
 
 ## Usage
 
-### Option 1: With OpenSkills
-
-```bash
-# Install OpenSkills
-npm i -g openskills
-
-# Install skills
-openskills install huangzt/my-agent-skills
-
-# Sync to AGENTS.md
-openskills sync
-```
-
-### Option 2: Direct Script Usage
+### Option 1: Direct Script Usage
 
 ```bash
 # Clone repository
