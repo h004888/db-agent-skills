@@ -1,72 +1,64 @@
 # My Agent Skills
 
-[![GitHub stars](https://img.shields.io/github/stars/huangzt/my-agent-skills.svg)](https://github.com/huangzt/my-agent-skills/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/huangzt/my-agent-skills.svg)](https://github.com/huangzt/my-agent-skills/network)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://www.python.org/)
+## Các skill có sẵn
 
-[English](README_EN.md)
-
-为 AI 代理提供的数据库工具技能集，兼容 [OpenSkills](https://github.com/numman-ali/openskills) 系统。
-
-## 包含的技能
-
-| 技能 | 数据库 | 依赖 |
-|------|--------|------|
+| Skill | Database | Phụ thuộc |
+|-------|----------|-----------|
 | [mysql-tools](skills/mysql-tools) | MySQL | `pip install pymysql` |
 | [mssql-tools](skills/mssql-tools) | SQL Server | `pip install pymssql` |
-| [dm8-tools](skills/dm8-tools) | 达梦 DM8 | `pip install jaydebeapi JPype1` |
-| [sqlite-tools](skills/sqlite-tools) | SQLite | 无需安装（Python 内置） |
+| [dm8-tools](skills/dm8-tools) | DM8 (达梦) | `pip install jaydebeapi JPype1` |
+| [postgresql-tools](skills/postgresql-tools) | PostgreSQL | `pip install psycopg2` |
+| [sqlite-tools](skills/sqlite-tools) | SQLite | Không cần cài (built-in Python) |
 
-## 每个技能包含
+## Cấu trúc mỗi skill
 
 ```
 skill-name/
-├── SKILL.md              # 技能主文件（使用说明）
-├── scripts/              # Python 工具脚本
-│   ├── *_connect.py      # 连接测试
-│   ├── *_tables.py       # 列出所有表
-│   ├── *_schema.py       # 查看表结构
-│   ├── *_query.py        # 执行 SQL 查询
-│   └── *_info.py         # 数据库信息
-├── references/           # SQL 参考文档
-└── assets/               # 驱动等资源（如有）
+├── SKILL.md              # File chính của skill (hướng dẫn sử dụng)
+├── scripts/              # Các script Python
+│   ├── *_connect.py      # Kiểm tra kết nối
+│   ├── *_tables.py       # Liệt kê tất cả bảng
+│   ├── *_schema.py       # Xem cấu trúc bảng
+│   ├── *_query.py        # Thực thi SQL query
+│   └── *_info.py         # Thông tin database
+├── references/           # Tài liệu tham khảo SQL
+└── assets/               # Driver và tài nguyên (nếu có)
 ```
 
-## 使用方式
+## Cách sử dụng
 
-### 方式一：配合 OpenSkills 使用
+### Cách 1: Dùng với OpenSkills
 
 ```bash
-# 安装 OpenSkills
+# Cài đặt OpenSkills
 npm i -g openskills
 
-# 安装技能
+# Cài đặt skills
 openskills install huangzt/my-agent-skills
 
-# 同步到 AGENTS.md
+# Đồng bộ vào AGENTS.md
 openskills sync
 ```
 
-### 方式二：直接使用脚本
+### Cách 2: Dùng trực tiếp script
 
 ```bash
-# 克隆仓库
+# Clone repo
 git clone https://github.com/huangzt/my-agent-skills.git
 
-# 安装依赖（以 MySQL 为例）
+# Cài đặt phụ thuộc (ví dụ MySQL)
 pip install pymysql
 
-# 使用脚本
+# Chạy script
 python skills/mysql-tools/scripts/mysql_connect.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB
 ```
 
-## 平台支持
+## Hỗ trợ nền tảng
 
 - ✅ Windows
 - ✅ macOS
 - ✅ Linux
 
-## 许可证
+## Giấy phép
 
-[MIT License](LICENSE) - 您可以自由使用、修改和分发本项目。
+[MIT License](LICENSE) - Tự do sử dụng, chỉnh sửa và phân phối.

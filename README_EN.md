@@ -5,9 +5,9 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://www.python.org/)
 
-[中文](README.md)
+[Vietnamese](README.md)
 
-A collection of database utility skills for AI agents, compatible with [OpenSkills](https://github.com/numman-ali/openskills) system.
+A collection of database utility skills for AI agents, compatible with the [OpenSkills](https://github.com/numman-ali/openskills) system.
 
 ## Included Skills
 
@@ -15,7 +15,8 @@ A collection of database utility skills for AI agents, compatible with [OpenSkil
 |-------|----------|------------|
 | [mysql-tools](skills/mysql-tools) | MySQL | `pip install pymysql` |
 | [mssql-tools](skills/mssql-tools) | SQL Server | `pip install pymssql` |
-| [dm8-tools](skills/dm8-tools) | Dameng DM8 | `pip install jaydebeapi JPype1` |
+| [dm8-tools](skills/dm8-tools) | DM8 (Dameng) | `pip install jaydebeapi JPype1` |
+| [postgresql-tools](skills/postgresql-tools) | PostgreSQL | `pip install psycopg2` |
 | [sqlite-tools](skills/sqlite-tools) | SQLite | Built-in (no install needed) |
 
 ## Each Skill Contains
@@ -55,7 +56,7 @@ openskills sync
 git clone https://github.com/huangzt/my-agent-skills.git
 
 # Install dependency (MySQL example)
-pip install mysql-connector-python
+pip install pymysql
 
 # Use scripts
 python skills/mysql-tools/scripts/mysql_connect.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB
