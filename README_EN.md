@@ -10,6 +10,7 @@
 | [mssql-tools](skills/mssql-tools) | SQL Server | `pip install pymssql` |
 | [dm8-tools](skills/dm8-tools) | DM8 (Dameng) | `pip install jaydebeapi JPype1` |
 | [postgresql-tools](skills/postgresql-tools) | PostgreSQL | `pip install psycopg2` |
+| [mongodb-tools](skills/mongodb-tools) | MongoDB | `pip install pymongo` |
 | [sqlite-tools](skills/sqlite-tools) | SQLite | Built-in (no install needed) |
 
 ## Each Skill Contains
