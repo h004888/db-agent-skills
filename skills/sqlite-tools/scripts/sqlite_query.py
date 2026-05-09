@@ -87,6 +87,9 @@ def execute_query(database: str, query: str, readonly: bool = False) -> dict:
 
 
 def main():
+    if sys.stdout.encoding.lower() != 'utf-8':
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
     parser = argparse.ArgumentParser(description="执行 SQLite SQL 查询")
     parser.add_argument("--database", required=True, help="数据库文件路径")
     parser.add_argument("--query", required=True, help="要执行的 SQL 语句")

@@ -71,6 +71,9 @@ def test_connection(database: str, readonly: bool = False) -> dict:
 
 
 def main():
+    if sys.stdout.encoding.lower() != 'utf-8':
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
     parser = argparse.ArgumentParser(description="测试 SQLite 数据库连接")
     parser.add_argument("--database", required=True, help="数据库文件路径")
     parser.add_argument("--readonly", action="store_true", help="只读模式打开")

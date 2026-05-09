@@ -110,6 +110,9 @@ def get_table_schema(database: str, table: str, readonly: bool = False) -> dict:
 
 
 def main():
+    if sys.stdout.encoding.lower() != 'utf-8':
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
     parser = argparse.ArgumentParser(description="查看 SQLite 表结构")
     parser.add_argument("--database", required=True, help="数据库文件路径")
     parser.add_argument("--table", required=True, help="表名")

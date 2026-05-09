@@ -81,6 +81,9 @@ def list_tables(database: str, readonly: bool = False) -> dict:
 
 
 def main():
+    if sys.stdout.encoding.lower() != 'utf-8':
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
     parser = argparse.ArgumentParser(description="列出 SQLite 数据库中的所有表")
     parser.add_argument("--database", required=True, help="数据库文件路径")
     parser.add_argument("--readonly", action="store_true", help="只读模式打开")
