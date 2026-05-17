@@ -13,6 +13,8 @@ description: "SQLite 数据库工具集，用于操作 SQLite 数据库文件。
 
 无需额外安装依赖，使用 Python 内置的 `sqlite3` 模块。
 
+**重要提示:** 所有脚本必须从 `skills/sqlite-tools/` 目录运行，或使用绝对路径。
+
 ### 支持的文件类型
 
 - `.db` - 标准 SQLite 数据库
@@ -38,31 +40,61 @@ description: "SQLite 数据库工具集，用于操作 SQLite 数据库文件。
 ### 1. 测试数据库连接
 
 ```bash
+cd skills/sqlite-tools
 python scripts/sqlite_connect.py --database /path/to/database.db
+```
+
+或使用绝对路径：
+```bash
+python skills/sqlite-tools/scripts/sqlite_connect.py --database /path/to/database.db
 ```
 
 ### 2. 列出所有表
 
 ```bash
+cd skills/sqlite-tools
 python scripts/sqlite_tables.py --database /path/to/database.db
+```
+
+或使用绝对路径：
+```bash
+python skills/sqlite-tools/scripts/sqlite_tables.py --database /path/to/database.db
 ```
 
 ### 3. 查看表结构
 
 ```bash
+cd skills/sqlite-tools
 python scripts/sqlite_schema.py --database /path/to/database.db --table TABLE_NAME
+```
+
+或使用绝对路径：
+```bash
+python skills/sqlite-tools/scripts/sqlite_schema.py --database /path/to/database.db --table TABLE_NAME
 ```
 
 ### 4. 执行 SQL 查询
 
 ```bash
+cd skills/sqlite-tools
 python scripts/sqlite_query.py --database /path/to/database.db --query "SELECT * FROM table LIMIT 10"
+```
+
+或使用绝对路径：
+```bash
+python skills/sqlite-tools/scripts/sqlite_query.py --database /path/to/database.db --query "SELECT * FROM table LIMIT 10"
 ```
 
 ### 5. 查看数据库信息
 
 ```bash
+cd skills/sqlite-tools
 python scripts/sqlite_info.py --database /path/to/database.db
+```
+
+或使用绝对路径：
+```bash
+python skills/sqlite-tools/scripts/sqlite_info.py --database /path/to/database.db
 ```
 
 ## 输出格式
@@ -81,6 +113,7 @@ python scripts/sqlite_info.py --database /path/to/database.db
 
 - 支持只读模式，避免意外修改数据库：
   ```bash
+  cd skills/sqlite-tools
   python scripts/sqlite_connect.py --database /path/to/database.db --readonly
   python scripts/sqlite_query.py --database /path/to/database.db --readonly --query "SELECT * FROM users"
   ```

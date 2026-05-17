@@ -12,8 +12,11 @@ Tools for MongoDB database operations including connection testing, collection l
 ### Prerequisites
 
 ```bash
+cd skills/mongodb-tools
 pip install pymongo
 ```
+
+**Important:** All scripts must be run from the `skills/mongodb-tools/` directory, or use absolute paths.
 
 ### Connection Parameters
 

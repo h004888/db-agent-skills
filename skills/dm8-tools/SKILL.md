@@ -14,10 +14,19 @@ description: "达梦数据库(DM8)工具集，用于连接数据库实例、列�
 安装 Python 依赖：
 
 ```bash
+cd skills/dm8-tools
 pip install jaydebeapi JPype1
 ```
 
 > 本工具使用 JDBC 驱动连接达梦数据库，已内置 DmJdbcDriver18.jar 驱动文件。
+
+### 平台兼容性
+
+- ✅ Windows
+- ✅ macOS
+- ✅ Linux
+
+**重要提示:** 所有脚本必须从 `skills/dm8-tools/` 目录运行，或使用绝对路径。
 
 ### 连接参数
 
@@ -37,31 +46,61 @@ pip install jaydebeapi JPype1
 ### 1. 测试数据库连接
 
 ```bash
+cd skills/dm8-tools
 python scripts/dm8_connect.py --host 127.0.0.1 --port 5236 --user SYSDBA --password YOUR_PASSWORD
+```
+
+或使用绝对路径：
+```bash
+python skills/dm8-tools/scripts/dm8_connect.py --host 127.0.0.1 --port 5236 --user SYSDBA --password YOUR_PASSWORD
 ```
 
 ### 2. 列出所有表
 
 ```bash
+cd skills/dm8-tools
 python scripts/dm8_tables.py --host 127.0.0.1 --user SYSDBA --password YOUR_PASSWORD --schema SCHEMA_NAME
+```
+
+或使用绝对路径：
+```bash
+python skills/dm8-tools/scripts/dm8_tables.py --host 127.0.0.1 --user SYSDBA --password YOUR_PASSWORD --schema SCHEMA_NAME
 ```
 
 ### 3. 查看表结构
 
 ```bash
+cd skills/dm8-tools
 python scripts/dm8_schema.py --host 127.0.0.1 --user SYSDBA --password YOUR_PASSWORD --table TABLE_NAME --schema SCHEMA_NAME
+```
+
+或使用绝对路径：
+```bash
+python skills/dm8-tools/scripts/dm8_schema.py --host 127.0.0.1 --user SYSDBA --password YOUR_PASSWORD --table TABLE_NAME --schema SCHEMA_NAME
 ```
 
 ### 4. 执行 SQL 查询
 
 ```bash
+cd skills/dm8-tools
 python scripts/dm8_query.py --host 127.0.0.1 --user SYSDBA --password YOUR_PASSWORD --query "SELECT * FROM TABLE_NAME WHERE ROWNUM <= 10"
+```
+
+或使用绝对路径：
+```bash
+python skills/dm8-tools/scripts/dm8_query.py --host 127.0.0.1 --user SYSDBA --password YOUR_PASSWORD --query "SELECT * FROM TABLE_NAME WHERE ROWNUM <= 10"
 ```
 
 ### 5. 查看数据库信息
 
 ```bash
+cd skills/dm8-tools
 python scripts/dm8_info.py --host 127.0.0.1 --user SYSDBA --password YOUR_PASSWORD
+```
+
+或使用绝对路径：
+```bash
+python skills/dm8-tools/scripts/dm8_info.py --host 127.0.0.1 --user SYSDBA --password YOUR_PASSWORD
 ```
 
 ## 输出格式

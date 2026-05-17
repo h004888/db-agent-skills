@@ -12,6 +12,7 @@ Collection of utilities for operating PostgreSQL databases, providing connection
 ### Prerequisites
 
 ```bash
+cd skills/postgresql-tools
 pip install psycopg2
 ```
 
@@ -20,6 +21,8 @@ pip install psycopg2
 - ✅ Windows
 - ✅ macOS
 - ✅ Linux
+
+**Important:** All scripts must be run from the `skills/postgresql-tools/` directory, or use absolute paths.
 
 ### Connection Parameters
 
@@ -40,7 +43,13 @@ All scripts support the following parameters:
 Verify database connection parameters:
 
 ```bash
+cd skills/postgresql-tools
 python scripts/pg_connect.py --host 127.0.0.1 --port 5432 --user postgres --password YOUR_PASSWORD --database YOUR_DB
+```
+
+Or use absolute path:
+```bash
+python skills/postgresql-tools/scripts/pg_connect.py --host 127.0.0.1 --port 5432 --user postgres --password YOUR_PASSWORD --database YOUR_DB
 ```
 
 ### 2. List All Tables
@@ -48,7 +57,13 @@ python scripts/pg_connect.py --host 127.0.0.1 --port 5432 --user postgres --pass
 Get all tables in the database:
 
 ```bash
+cd skills/postgresql-tools
 python scripts/pg_tables.py --host 127.0.0.1 --user postgres --password YOUR_PASSWORD --database YOUR_DB
+```
+
+Or use absolute path:
+```bash
+python skills/postgresql-tools/scripts/pg_tables.py --host 127.0.0.1 --user postgres --password YOUR_PASSWORD --database YOUR_DB
 ```
 
 Output: Table list with type (BASE TABLE / VIEW), column count, and row count.
@@ -58,7 +73,13 @@ Output: Table list with type (BASE TABLE / VIEW), column count, and row count.
 Display field information for a specific table:
 
 ```bash
+cd skills/postgresql-tools
 python scripts/pg_schema.py --host 127.0.0.1 --user postgres --password YOUR_PASSWORD --database YOUR_DB --table TABLE_NAME
+```
+
+Or use absolute path:
+```bash
+python skills/postgresql-tools/scripts/pg_schema.py --host 127.0.0.1 --user postgres --password YOUR_PASSWORD --database YOUR_DB --table TABLE_NAME
 ```
 
 Output: Column name, data type, nullable, key type, default value, and extra info.
@@ -68,7 +89,13 @@ Output: Column name, data type, nullable, key type, default value, and extra inf
 Run any SQL statement:
 
 ```bash
+cd skills/postgresql-tools
 python scripts/pg_query.py --host 127.0.0.1 --user postgres --password YOUR_PASSWORD --database YOUR_DB --query "SELECT * FROM users LIMIT 10"
+```
+
+Or use absolute path:
+```bash
+python skills/postgresql-tools/scripts/pg_query.py --host 127.0.0.1 --user postgres --password YOUR_PASSWORD --database YOUR_DB --query "SELECT * FROM users LIMIT 10"
 ```
 
 Supports SELECT, INSERT, UPDATE, DELETE, and all other SQL statements.
@@ -78,7 +105,13 @@ Supports SELECT, INSERT, UPDATE, DELETE, and all other SQL statements.
 Get database version, size, and other information:
 
 ```bash
+cd skills/postgresql-tools
 python scripts/pg_info.py --host 127.0.0.1 --user postgres --password YOUR_PASSWORD --database YOUR_DB
+```
+
+Or use absolute path:
+```bash
+python skills/postgresql-tools/scripts/pg_info.py --host 127.0.0.1 --user postgres --password YOUR_PASSWORD --database YOUR_DB
 ```
 
 ## Output Format
@@ -107,21 +140,22 @@ On error:
 
 ### Exploring a New Database
 
-1. Test connection: `pg_connect.py`
-2. List all tables: `pg_tables.py`
-3. View table schema: `pg_schema.py --table TABLE_NAME`
-4. Query sample data: `pg_query.py --query "SELECT * FROM TABLE_NAME LIMIT 5"`
+1. Test connection: `cd skills/postgresql-tools && python scripts/pg_connect.py ...`
+2. List all tables: `cd skills/postgresql-tools && python scripts/pg_tables.py ...`
+3. View table schema: `cd skills/postgresql-tools && python scripts/pg_schema.py --table TABLE_NAME ...`
+4. Query sample data: `cd skills/postgresql-tools && python scripts/pg_query.py --query "SELECT * FROM TABLE_NAME LIMIT 5" ...`
 
 ### Data Analysis
 
-1. Get row count: `pg_query.py --query "SELECT COUNT(*) FROM TABLE_NAME"`
-2. Analyze data distribution: `pg_query.py --query "SELECT column, COUNT(*) FROM TABLE_NAME GROUP BY column"`
+1. Get row count: `cd skills/postgresql-tools && python scripts/pg_query.py --query "SELECT COUNT(*) FROM TABLE_NAME" ...`
+2. Analyze data distribution: `cd skills/postgresql-tools && python scripts/pg_query.py --query "SELECT column, COUNT(*) FROM TABLE_NAME GROUP BY column" ...`
 
 ### Read-Only Mode
 
 All scripts support `--readonly` flag for safe read-only access (no modifications):
 
 ```bash
+cd skills/postgresql-tools
 python scripts/pg_query.py --host 127.0.0.1 --user postgres --password YOUR_PASSWORD --database YOUR_DB --query "SELECT * FROM users" --readonly
 ```
 

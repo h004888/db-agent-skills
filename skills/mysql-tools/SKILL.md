@@ -12,6 +12,7 @@ description: "MySQL 数据库工具集，用于连接数据库实例、列出所
 ### 前置要求
 
 ```bash
+cd skills/mysql-tools
 pip install pymysql
 ```
 
@@ -20,6 +21,8 @@ pip install pymysql
 - ✅ Windows
 - ✅ macOS
 - ✅ Linux
+
+**重要提示:** 所有脚本必须从 `skills/mysql-tools/` 目录运行，或使用绝对路径。
 
 ### 连接参数
 
@@ -40,7 +43,13 @@ pip install pymysql
 验证数据库连接参数是否正确：
 
 ```bash
+cd skills/mysql-tools
 python scripts/mysql_connect.py --host 127.0.0.1 --port 3306 --user root --password YOUR_PASSWORD --database YOUR_DB
+```
+
+或使用绝对路径：
+```bash
+python skills/mysql-tools/scripts/mysql_connect.py --host 127.0.0.1 --port 3306 --user root --password YOUR_PASSWORD --database YOUR_DB
 ```
 
 ### 2. 列出所有表
@@ -48,37 +57,55 @@ python scripts/mysql_connect.py --host 127.0.0.1 --port 3306 --user root --passw
 获取数据库中的所有表名：
 
 ```bash
+cd skills/mysql-tools
 python scripts/mysql_tables.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB
 ```
 
-输出格式：表名列表，包含表类型（BASE TABLE / VIEW）
+或使用绝对路径：
+```bash
+python skills/mysql-tools/scripts/mysql_tables.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB
+```
 
 ### 3. 查看表结构
 
 显示指定表的字段信息：
 
 ```bash
+cd skills/mysql-tools
 python scripts/mysql_schema.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB --table TABLE_NAME
 ```
 
-输出格式：字段名、类型、是否可空、键类型、默认值、额外信息
+或使用绝对路径：
+```bash
+python skills/mysql-tools/scripts/mysql_schema.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB --table TABLE_NAME
+```
 
 ### 4. 执行 SQL 查询
 
 运行任意 SQL 语句：
 
 ```bash
+cd skills/mysql-tools
 python scripts/mysql_query.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB --query "SELECT * FROM users LIMIT 10"
 ```
 
-支持 SELECT、INSERT、UPDATE、DELETE 等所有 SQL 语句。
+或使用绝对路径：
+```bash
+python skills/mysql-tools/scripts/mysql_query.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB --query "SELECT * FROM users LIMIT 10"
+```
 
 ### 5. 查看数据库信息
 
 获取数据库版本、大小等信息：
 
 ```bash
+cd skills/mysql-tools
 python scripts/mysql_info.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB
+```
+
+或使用绝对路径：
+```bash
+python skills/mysql-tools/scripts/mysql_info.py --host 127.0.0.1 --user root --password YOUR_PASSWORD --database YOUR_DB
 ```
 
 ## 输出格式
@@ -107,15 +134,15 @@ python scripts/mysql_info.py --host 127.0.0.1 --user root --password YOUR_PASSWO
 
 ### 探索新数据库
 
-1. 测试连接：`mysql_connect.py`
-2. 列出所有表：`mysql_tables.py`
-3. 查看关键表结构：`mysql_schema.py --table TABLE_NAME`
-4. 查询示例数据：`mysql_query.py --query "SELECT * FROM TABLE_NAME LIMIT 5"`
+1. 测试连接：`cd skills/mysql-tools && python scripts/mysql_connect.py ...`
+2. 列出所有表：`cd skills/mysql-tools && python scripts/mysql_tables.py ...`
+3. 查看关键表结构：`cd skills/mysql-tools && python scripts/mysql_schema.py --table TABLE_NAME ...`
+4. 查询示例数据：`cd skills/mysql-tools && python scripts/mysql_query.py --query "SELECT * FROM TABLE_NAME LIMIT 5" ...`
 
 ### 数据分析
 
-1. 获取表记录数：`mysql_query.py --query "SELECT COUNT(*) FROM TABLE_NAME"`
-2. 分析数据分布：`mysql_query.py --query "SELECT column, COUNT(*) FROM TABLE_NAME GROUP BY column"`
+1. 获取表记录数：`cd skills/mysql-tools && python scripts/mysql_query.py --query "SELECT COUNT(*) FROM TABLE_NAME" ...`
+2. 分析数据分布：`cd skills/mysql-tools && python scripts/mysql_query.py --query "SELECT column, COUNT(*) FROM TABLE_NAME GROUP BY column" ...`
 
 ### 参考更多 SQL 示例
 

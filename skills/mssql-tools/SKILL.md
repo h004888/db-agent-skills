@@ -14,6 +14,7 @@ description: "SQL Server (MSSQL) 数据库工具集，用于连接数据库实�
 **安装 Python 库：**
 
 ```bash
+cd skills/mssql-tools
 pip install pymssql
 ```
 
@@ -28,6 +29,7 @@ pip install pymssql
 - ✅ macOS
 - ✅ Linux
 
+**重要提示:** 所有脚本必须从 `skills/mssql-tools/` 目录运行，或使用绝对路径。
 
 ### 连接参数
 
@@ -48,7 +50,13 @@ pip install pymssql
 验证数据库连接参数是否正确：
 
 ```bash
+cd skills/mssql-tools
 python scripts/mssql_connect.py --server 127.0.0.1 --port 1433 --user sa --password YOUR_PASSWORD --database YOUR_DB
+```
+
+或使用绝对路径：
+```bash
+python skills/mssql-tools/scripts/mssql_connect.py --server 127.0.0.1 --port 1433 --user sa --password YOUR_PASSWORD --database YOUR_DB
 ```
 
 ### 2. 列出所有表
@@ -56,7 +64,13 @@ python scripts/mssql_connect.py --server 127.0.0.1 --port 1433 --user sa --passw
 获取数据库中的所有表名：
 
 ```bash
+cd skills/mssql-tools
 python scripts/mssql_tables.py --server 127.0.0.1 --user sa --password YOUR_PASSWORD --database YOUR_DB
+```
+
+或使用绝对路径：
+```bash
+python skills/mssql-tools/scripts/mssql_tables.py --server 127.0.0.1 --user sa --password YOUR_PASSWORD --database YOUR_DB
 ```
 
 输出格式：表名列表，包含表类型（TABLE / VIEW）、Schema 和行数
@@ -66,7 +80,13 @@ python scripts/mssql_tables.py --server 127.0.0.1 --user sa --password YOUR_PASS
 显示指定表的字段信息：
 
 ```bash
+cd skills/mssql-tools
 python scripts/mssql_schema.py --server 127.0.0.1 --user sa --password YOUR_PASSWORD --database YOUR_DB --table TABLE_NAME
+```
+
+或使用绝对路径：
+```bash
+python skills/mssql-tools/scripts/mssql_schema.py --server 127.0.0.1 --user sa --password YOUR_PASSWORD --database YOUR_DB --table TABLE_NAME
 ```
 
 可选指定 Schema：`--schema dbo`
@@ -78,7 +98,13 @@ python scripts/mssql_schema.py --server 127.0.0.1 --user sa --password YOUR_PASS
 运行任意 SQL 语句：
 
 ```bash
+cd skills/mssql-tools
 python scripts/mssql_query.py --server 127.0.0.1 --user sa --password YOUR_PASSWORD --database YOUR_DB --query "SELECT TOP 10 * FROM users"
+```
+
+或使用绝对路径：
+```bash
+python skills/mssql-tools/scripts/mssql_query.py --server 127.0.0.1 --user sa --password YOUR_PASSWORD --database YOUR_DB --query "SELECT TOP 10 * FROM users"
 ```
 
 支持 SELECT、INSERT、UPDATE、DELETE 等所有 T-SQL 语句。
@@ -88,7 +114,13 @@ python scripts/mssql_query.py --server 127.0.0.1 --user sa --password YOUR_PASSW
 获取数据库版本、大小等信息：
 
 ```bash
+cd skills/mssql-tools
 python scripts/mssql_info.py --server 127.0.0.1 --user sa --password YOUR_PASSWORD --database YOUR_DB
+```
+
+或使用绝对路径：
+```bash
+python skills/mssql-tools/scripts/mssql_info.py --server 127.0.0.1 --user sa --password YOUR_PASSWORD --database YOUR_DB
 ```
 
 ## 输出格式
@@ -117,15 +149,15 @@ python scripts/mssql_info.py --server 127.0.0.1 --user sa --password YOUR_PASSWO
 
 ### 探索新数据库
 
-1. 测试连接：`mssql_connect.py`
-2. 列出所有表：`mssql_tables.py`
-3. 查看关键表结构：`mssql_schema.py --table TABLE_NAME`
-4. 查询示例数据：`mssql_query.py --query "SELECT TOP 5 * FROM TABLE_NAME"`
+1. 测试连接：`cd skills/mssql-tools && python scripts/mssql_connect.py ...`
+2. 列出所有表：`cd skills/mssql-tools && python scripts/mssql_tables.py ...`
+3. 查看关键表结构：`cd skills/mssql-tools && python scripts/mssql_schema.py --table TABLE_NAME ...`
+4. 查询示例数据：`cd skills/mssql-tools && python scripts/mssql_query.py --query "SELECT TOP 5 * FROM TABLE_NAME" ...`
 
 ### 数据分析
 
-1. 获取表记录数：`mssql_query.py --query "SELECT COUNT(*) FROM TABLE_NAME"`
-2. 分析数据分布：`mssql_query.py --query "SELECT column, COUNT(*) FROM TABLE_NAME GROUP BY column"`
+1. 获取表记录数：`cd skills/mssql-tools && python scripts/mssql_query.py --query "SELECT COUNT(*) FROM TABLE_NAME" ...`
+2. 分析数据分布：`cd skills/mssql-tools && python scripts/mssql_query.py --query "SELECT column, COUNT(*) FROM TABLE_NAME GROUP BY column" ...`
 
 ## SQL Server 特有注意事项
 
